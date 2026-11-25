@@ -1,0 +1,10 @@
+# built by make_submission.py
+submission.zip
+
+# your PDF export stays on your machine
+HW6.pdf
+
+# notebook and python noise
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
