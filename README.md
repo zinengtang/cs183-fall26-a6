@@ -15,7 +15,7 @@ conda create -y -n ugrad-nlp python=3.11 jupyterlab && conda activate ugrad-nlp
 pip install -r requirements.txt && jupyter lab
 ```
 
-You download one CLIP model (about 600 MB) and the CIFAR-10 test split (24 MB). The other models' scores are precomputed in `data/`.
+You only download one CLIP model (about 600 MB) and the CIFAR-10 test split (24 MB).
 
 ## Submit
 

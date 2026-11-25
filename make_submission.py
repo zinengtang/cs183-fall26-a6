@@ -24,15 +24,15 @@ CELLS = {
     "zero_shot": ["build_zero_shot_weights", "zero_shot_logits"],
     "rsa": ["literal_listener", "pragmatic_speaker", "pragmatic_listener"],
     "neural_rsa": ["context_log_L0", "literal_speaker", "neural_log_S1", "neural_log_L1"],
-    "population_speaker": ["population_speaker"],
+    "knowledge": ["observation_model", "knowledgeable_speaker", "knowledgeable_listener"],
 }
 PART = {
     "clip_contrastive_loss": "1.1", "build_zero_shot_weights": "1.2", "zero_shot_logits": "1.2",
     "literal_listener": "2.1", "pragmatic_speaker": "2.1", "pragmatic_listener": "2.1",
     "context_log_L0": "3.1", "literal_speaker": "3.1", "neural_log_S1": "3.1", "neural_log_L1": "3.1",
-    "population_speaker": "4.1",
+    "observation_model": "4.1", "knowledgeable_speaker": "4.1", "knowledgeable_listener": "4.1",
 }
-ONLY_283A = {"population_speaker"}
+ONLY_283A = {"observation_model", "knowledgeable_speaker", "knowledgeable_listener"}
 
 
 def smoke_tests():
@@ -71,6 +71,9 @@ def smoke_tests():
         return x - np.log(np.exp(x).sum(1, keepdims=True))
 
     log_L0 = log_softmax_rows(scores.T)                                  # [U, C]
+    kn_lex = np.array([[1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 0, 1], [1, 1, 1, 1]])   # none / some / all / (nothing)
+    kn_cost = np.array([0, 0, 0, 1.0])
+    kn_obs = np.array([[1.0, 0, 0, 0], [0, 1.0, 0, 0], [0, 0, 1.0, 0], [0, 0, 0, 1.0]])   # full access
     return {
         "clip_contrastive_loss": returns_scalar,
         "build_zero_shot_weights": zs_weights,
@@ -82,7 +85,9 @@ def smoke_tests():
         "literal_speaker": lambda ns: None if int(ns["literal_speaker"](scores, 0)) == 0 else "S0 should pick argmax_u scores[target, u]",
         "neural_log_S1": shape_of("neural_log_S1", (log_L0,), (3, 3)),
         "neural_log_L1": shape_of("neural_log_L1", (log_softmax_rows(scores),), (3, 3)),
-        "population_speaker": lambda ns: None if 0 <= int(ns["population_speaker"]([log_L0, log_L0], 0, np.zeros(3), "min")) < 3 else "index out of range",
+        "observation_model": shape_of("observation_model", (3, 2), (4, 3)),
+        "knowledgeable_speaker": shape_of("knowledgeable_speaker", (kn_lex, np.ones(4) / 4, kn_obs, 1.0, kn_cost), (4, 4)),
+        "knowledgeable_listener": shape_of("knowledgeable_listener", (np.full((4, 4), 0.25), np.ones(4) / 4, kn_obs), (4, 4)),
     }
 
 
@@ -115,8 +120,8 @@ def main():
     cells = graded_cells(args.notebook)
     tests = smoke_tests()
     problems = []
-    print(f"{'part':>5}  {'function':<26} status")
-    print("-" * 72)
+    print(f"{'part':>5}  {'function':<32} status")
+    print("-" * 78)
     for cell, fns in CELLS.items():
         ns = {"__name__": "submission_check"}
         cell_error = None
@@ -143,16 +148,16 @@ def main():
                     status = "not implemented yet"
                 except Exception as e:  # noqa: BLE001
                     status = f"raises {type(e).__name__}: {e}"
-            print(f"{PART[fn]:>5}  {label:<26} {status}")
+            print(f"{PART[fn]:>5}  {label:<32} {status}")
             if status != "ok" and not optional:
                 problems.append(fn)
 
     pdf = args.pdf if os.path.exists(args.pdf) else None
-    print("-" * 72)
+    print("-" * 78)
     if pdf:
-        print(f"{'':>5}  {os.path.basename(pdf):<26} ok ({os.path.getsize(pdf) / 1024:.0f} KB)")
+        print(f"{'':>5}  {os.path.basename(pdf):<32} ok ({os.path.getsize(pdf) / 1024:.0f} KB)")
     else:
-        print(f"{'':>5}  {'HW6.pdf':<26} not found -- export the notebook to PDF; every ★ question is graded from it")
+        print(f"{'':>5}  {'HW6.pdf':<32} not found -- export the notebook to PDF; every ★ question is graded from it")
 
     with zipfile.ZipFile(args.out, "w", zipfile.ZIP_DEFLATED) as z:
         z.write(args.notebook, "HW6.ipynb")
