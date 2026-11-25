@@ -1,4 +1,4 @@
-# Assignment 6: Vision and Language
+# Assignment 6: Language + X
 
 **Due Fri Dec 4, 11:59 PM PT.** All the work is in `HW6.ipynb`.
 
