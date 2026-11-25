@@ -1,0 +1,809 @@
+{
+"model": "Qwen/Qwen2.5-0.5B-Instruct",
+"temperature": 0.7,
+"k": 5,
+"n_per_challenge": 6,
+"device": "cuda",
+"captions": {
+"a yellow square and a red circle": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}]}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}"
+]
+},
+"a red square and a yellow circle": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}"
+]
+},
+"there is a yellow square and there is a red circle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"count\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"exist\", \"shape\": \"square\", \"color\": \"yellow\"}, {\"op\": \"exist\", \"shape\": \"circle\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}"
+]
+},
+"there is a red square and there is a yellow circle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exist\", \"arg\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}"
+]
+},
+"a green triangle and a blue circle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}"
+]
+},
+"a blue triangle and a green circle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}"
+]
+},
+"a triangle that is green and a circle that is blue": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}"
+]
+},
+"a triangle that is blue and a circle that is green": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"shape\": \"circle\", \"color\": \"green\"}, {\"shape\": \"triangle\", \"color\": \"blue\"}]}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}"
+]
+},
+"a blue circle and a yellow square": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}]}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}]}"
+]
+},
+"a yellow circle and a blue square": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"{\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"count\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"circle\"}, \"b\": {\"color\": \"blue\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}"
+]
+},
+"the picture has both a blue circle and a yellow square": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}}"
+]
+},
+"the picture has both a yellow circle and a blue square": {
+"greedy": "{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}}",
+"{\"op\": \"has\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"has\", \"color\": \"blue\", \"shape\": \"square\"}}"
+]
+},
+"a red triangle and a blue square": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}",
+"{\"op\": \"and\", \"args\": [{\"shape\": \"triangle\", \"color\": \"red\"}, {\"shape\": \"square\", \"color\": \"blue\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}]}"
+]
+},
+"a blue triangle and a red square": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}]}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"count\", \"color\": \"red\", \"shape\": \"square\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}]}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}]}"
+]
+},
+"there is a red triangle and there is a blue square": {
+"greedy": "{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"count\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"count\", \"color\": \"blue\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"square\"}}"
+]
+},
+"there is a blue triangle and there is a red square": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"red\", \"shape\": \"square\"}}",
+"{\"op\": \"count\", \"color\": \"blue\", \"shape\": \"triangle\"}, {\"op\": \"count\", \"color\": \"red\", \"shape\": \"square\"}}"
+]
+},
+"a green square and a yellow circle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}"
+]
+},
+"a yellow square and a green circle": {
+"greedy": "{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}"
+]
+},
+"a square that is green and a circle that is yellow": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"not\", \"arg\": {\"color\": \"green\", \"shape\": \"square\"}, \"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}"
+]
+},
+"a square that is yellow and a circle that is green": {
+"greedy": "{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}"
+]
+},
+"a green circle and a yellow triangle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}]}"
+]
+},
+"a yellow circle and a green triangle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}]}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}]}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}]}"
+]
+},
+"the picture has both a green circle and a yellow triangle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"count\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"triangle\"}, {\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}"
+]
+},
+"the picture has both a yellow circle and a green triangle": {
+"greedy": "{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"circle\", \"n\": 1, \"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"count\", \"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"count\", \"color\": \"yellow\", \"shape\": \"circle\"}, {\"op\": \"count\", \"color\": \"green\", \"shape\": \"triangle\"}}"
+]
+},
+"a red circle above a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}"
+]
+},
+"a red circle below a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"the red circle sits on top of the green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"beside\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}",
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"on\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"the red circle sits under the green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"a red square below a yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}"
+]
+},
+"a red square above a yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}"
+]
+},
+"a red square is lower down than a yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"beside\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"<=\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}"
+]
+},
+"a red square is higher up than a yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"not\", \"arg\": {\"color\": \"red\", \"shape\": \"square\"}, \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"square\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}"
+]
+},
+"a yellow triangle above a green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"a yellow triangle below a green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"the green circle is under the yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}"
+]
+},
+"the green circle is on top of the yellow triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"circle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"triangle\"}}",
+"{\"op\": \"is above\", \"colors\": [\"green\", \"yellow\"], \"shapes\": [\"circle\", \"triangle\"]}"
+]
+},
+"a yellow square below a green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"a yellow square above a green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"the yellow square sits under the green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"the yellow square sits on top of the green circle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"on\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"on\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}]}",
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}",
+"{\"op\": \"relation\", \"rel\": \"on\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"circle\"}}"
+]
+},
+"a blue circle above a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"a blue circle below a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"a blue circle is higher up than a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"higher\", \"a\": {\"op\": \"exists\", \"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"a blue circle is lower down than a green square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"blue\", \"shape\": \"circle\"}, \"b\": {\"color\": \"green\", \"shape\": \"square\"}}"
+]
+},
+"a yellow square below a green triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"below\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}"
+]
+},
+"a yellow square above a green triangle": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"samples": [
+"{\"op\": \"and\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}]}",
+"{\"op\": \"existence\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"existence\", \"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"is above\", \"args\": [{\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}]}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}",
+"{\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"yellow\", \"shape\": \"square\"}, \"b\": {\"color\": \"green\", \"shape\": \"triangle\"}}"
+]
+},
+"the green triangle is on top of the yellow square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"above\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}, {\"op\": \"above\", \"args\": [{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}], \"b\": {\"op\": \"exists\", \"color\": \"yellow\", \"shape\": \"square\"}}]",
+"{\"op\": \"at\", \"args\": [{\"color\": \"green\", \"shape\": \"triangle\"}, {\"color\": \"yellow\", \"shape\": \"square\"}]}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"triangle\"}, {\"op\": \"isAbove\", \"position\": \"top\", \"shape\": \"yellow\", \"position\": \"bottom\", \"object\": \"square\"}",
+"{\"op\": \"relation\", \"rel\": \"on top\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}"
+]
+},
+"the green triangle is under the yellow square": {
+"greedy": "{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"samples": [
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}",
+"{\"op\": \"relation\", \"rel\": \"under\", \"a\": {\"color\": \"green\", \"shape\": \"triangle\"}, \"b\": {\"color\": \"yellow\", \"shape\": \"square\"}}"
+]
+},
+"two circles": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"circle\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}"
+]
+},
+"three circles": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}"
+]
+},
+"exactly two circles": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"circle\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}"
+]
+},
+"exactly three circles": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"red\", \"shape\": \"circle\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"circle\", \"n\": 3}"
+]
+},
+"one square": {
+"greedy": "{\"op\": \"count\", \"shape\": \"square\", \"n\": 1}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\"}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}"
+]
+},
+"two squares": {
+"greedy": "{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}"
+]
+},
+"there is exactly one square": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 1}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"shape\": \"square\", \"n\": 1}"
+]
+},
+"there are 2 squares in the picture": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}"
+]
+},
+"three squares": {
+"greedy": "{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}"
+]
+},
+"the number of squares is 2": {
+"greedy": "{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 2}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 2}"
+]
+},
+"the number of squares is 3": {
+"greedy": "{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"square\", \"n\": 3}"
+]
+},
+"four circles": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"red\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}"
+]
+},
+"there are 3 circles in the picture": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"shape\": \"circle\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"red\", \"shape\": \"circle\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}"
+]
+},
+"there are 4 circles in the picture": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"orange\", \"n\": 4}"
+]
+},
+"the number of circles is 4": {
+"greedy": "{\"op\": \"count\", \"color\": \"circle\", \"n\": 4}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 4}",
+"{\"op\": \"count\", \"shape\": \"circle\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"circles\", \"n\": 4}",
+"{\"op\": \"count\", \"shape\": \"circle\", \"n\": 4}",
+"{\"op\": \"count\", \"color\": \"circle\", \"n\": 4}"
+]
+},
+"the number of circles is 3": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"circle\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"circle\", \"n\": 3}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 3}"
+]
+},
+"a red shape": {
+"greedy": "{\"op\": \"exists\", \"color\": \"red\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}"
+]
+},
+"no red shapes": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}"
+]
+},
+"something is red": {
+"greedy": "{\"op\": \"exists\", \"color\": \"red\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}"
+]
+},
+"there isn't anything red": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}"
+]
+},
+"no green shapes": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"green\"}}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\"}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"green\"}}",
+"{\"op\": \"not\", \"arg\": {}}",
+"{\"op\": \"not\", \"arg\": {}}",
+"{\"op\": \"not\", \"color\": \"green\"}"
+]
+},
+"a green shape": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"shape\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"shape\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"circle\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"shape\": \"shape\"}",
+"{\"op\": \"exists\", \"color\": \"green\"}",
+"{\"op\": \"exists\", \"color\": \"green\"}"
+]
+},
+"nothing is green": {
+"greedy": "{\"op\": \"count\", \"color\": \"green\", \"n\": 0}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 0}",
+"{\"op\": \"exists\", \"color\": \"green\"}",
+"{\"op\": \"noneOf\", \"color\": \"green\"}",
+"{\"op\": \"nothing\", \"color\": \"green\"}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 0}"
+]
+},
+"there is at least one green shape": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\"}",
+"samples": [
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"exists\", \"color\": \"green\"}",
+"{\"op\": \"exists\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\"}"
+]
+},
+"one of the shapes is red": {
+"greedy": "{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"shape\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"red\", \"shape\": \"shape1\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"exists\", \"color\": \"red\"}",
+"{\"op\": \"count\", \"shape\": \"red\", \"n\": 1}"
+]
+},
+"none of the shapes are red": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"relation\", \"rel\": \"above\", \"a\": {\"color\": \"red\", \"shape\": \"circle\"}, \"b\": {\"color\": \"red\", \"shape\": \"square\"}}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"red\"}}"
+]
+},
+"no blue shapes": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"{\"op\": \"count\", \"shape\": \"blue\", \"n\": 0}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}"
+]
+},
+"a blue shape": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"exists\", \"color\": \"blue\"}"
+]
+},
+"there isn't anything blue": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"not\", \"arg\": {}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}",
+"{\"op\": \"exists\", \"color\": \"blue\"}"
+]
+},
+"something is blue": {
+"greedy": "{\"op\": \"exists\", \"color\": \"blue\"}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"color\": \"blue\"}}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"not\", \"arg\": {}}",
+"{\"op\": \"exists\", \"color\": \"blue\"}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"blue\"}}"
+]
+},
+"none of the shapes are green": {
+"greedy": "{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"green\"}}",
+"samples": [
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"green\"}}",
+"{\"op\": \"not\", \"color\": \"green\"}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 0}",
+"{\"op\": \"not\", \"arg\": {\"color\": \"green\"}}",
+"{\"op\": \"not\", \"arg\": {\"op\": \"exists\", \"color\": \"green\"}}"
+]
+},
+"one of the shapes is green": {
+"greedy": "{\"op\": \"exists\", \"color\": \"green\"}",
+"samples": [
+"{\"op\": \"exists\", \"color\": \"green\"}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"count\", \"color\": \"green\", \"n\": 1}",
+"{\"op\": \"exist\", \"shape\": \"green\"}"
+]
+}
+}
+}
