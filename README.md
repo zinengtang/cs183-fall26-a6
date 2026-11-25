@@ -1,4 +1,4 @@
-# Assignment 6: Grounded Language with CLIP and Pragmatic Reference Games
+# Assignment 6: Vision and Language
 
 **Due Fri Dec 4, 11:59 PM PT.** All the work is in `HW6.ipynb`.
 

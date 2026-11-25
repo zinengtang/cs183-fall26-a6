@@ -22,17 +22,15 @@ REPO = os.path.dirname(os.path.abspath(__file__))
 CELLS = {
     "clip_contrastive_loss": ["clip_contrastive_loss"],
     "zero_shot": ["build_zero_shot_weights", "zero_shot_logits"],
-    "rsa": ["literal_listener", "pragmatic_speaker", "pragmatic_listener"],
-    "neural_rsa": ["context_log_L0", "literal_speaker", "neural_log_S1", "neural_log_L1"],
-    "knowledge": ["observation_model", "knowledgeable_speaker", "knowledgeable_listener"],
+    "execute": ["execute"],
+    "rsa": ["rsa_L0", "rsa_S1", "rsa_L1"],
+    "parse": ["parse"],
 }
 PART = {
     "clip_contrastive_loss": "1.1", "build_zero_shot_weights": "1.2", "zero_shot_logits": "1.2",
-    "literal_listener": "2.1", "pragmatic_speaker": "2.1", "pragmatic_listener": "2.1",
-    "context_log_L0": "3.1", "literal_speaker": "3.1", "neural_log_S1": "3.1", "neural_log_L1": "3.1",
-    "observation_model": "4.1", "knowledgeable_speaker": "4.1", "knowledgeable_listener": "4.1",
+    "execute": "2.2", "rsa_L0": "3.1", "rsa_S1": "3.1", "rsa_L1": "3.1", "parse": "4.1",
 }
-ONLY_283A = {"observation_model", "knowledgeable_speaker", "knowledgeable_listener"}
+ONLY_283A = {"parse"}
 
 
 def smoke_tests():
@@ -40,14 +38,10 @@ def smoke_tests():
     import numpy as np
     import torch
 
-    lex = np.array([[1, 1, 0], [0, 0, 1], [1, 0, 1], [0, 1, 0]])    # Frank & Goodman (2012)
-    prior = np.ones(3) / 3
-    scores = np.array([[30.0, 21.0, 25.0], [22.0, 29.0, 25.0], [24.0, 23.0, 28.0]])  # [C, U]
-
-    def fg_listener(ns):
-        L1 = np.asarray(ns["pragmatic_listener"](ns["pragmatic_speaker"](ns["literal_listener"](lex, prior), 1.0), prior))
-        if not np.allclose(L1[0], [0.6, 0.4, 0.0], atol=1e-6):
-            return f"L1('blue') = {np.round(L1[0], 3)}, expected [0.6, 0.4, 0.0]"
+    with np.errstate(divide="ignore"):
+        fg_phi = np.log(np.array([[1, 1, 0], [0, 0, 1], [1, 0, 1], [0, 1, 0]]))   # Frank & Goodman (2012)
+    red_above = [{"color": "red", "shape": "circle", "box": (10, 10, 30, 30)},
+                 {"color": "blue", "shape": "square", "box": (100, 10, 120, 30)}]
 
     def returns_scalar(ns):
         out = ns["clip_contrastive_loss"](torch.randn(4, 8), torch.randn(4, 8), 10.0)
@@ -59,6 +53,16 @@ def smoke_tests():
         if tuple(out.shape) != (2, 8):
             return f"shape {tuple(out.shape)}, expected (2, 8)"
 
+    def executes(ns):
+        prog = {"op": "relation", "rel": "above", "a": {"color": "red"}, "b": {"shape": "square"}}
+        if not ns["execute"](prog, red_above):
+            return "the red circle is above the blue square, but execute returned False"
+
+    def fg_listener(ns):
+        L1 = np.exp(np.asarray(ns["rsa_L1"](ns["rsa_S1"](ns["rsa_L0"](fg_phi)))))
+        if not np.allclose(L1[0], [0.6, 0.4, 0.0], atol=1e-6):
+            return f"L1('blue') = {np.round(L1[0], 3)}, expected [0.6, 0.4, 0.0]"
+
     def shape_of(fn, args, shape):
         def check(ns):
             out = np.asarray(ns[fn](*args))
@@ -66,28 +70,15 @@ def smoke_tests():
                 return f"shape {out.shape}, expected {shape}"
         return check
 
-    def log_softmax_rows(x):
-        x = x - x.max(1, keepdims=True)
-        return x - np.log(np.exp(x).sum(1, keepdims=True))
-
-    log_L0 = log_softmax_rows(scores.T)                                  # [U, C]
-    kn_lex = np.array([[1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 0, 1], [1, 1, 1, 1]])   # none / some / all / (nothing)
-    kn_cost = np.array([0, 0, 0, 1.0])
-    kn_obs = np.array([[1.0, 0, 0, 0], [0, 1.0, 0, 0], [0, 0, 1.0, 0], [0, 0, 0, 1.0]])   # full access
     return {
         "clip_contrastive_loss": returns_scalar,
         "build_zero_shot_weights": zs_weights,
         "zero_shot_logits": lambda ns: None if tuple(ns["zero_shot_logits"](torch.randn(5, 8), torch.randn(2, 8), 10.0).shape) == (5, 2) else "shape should be [N, K]",
-        "literal_listener": shape_of("literal_listener", (lex, prior), (4, 3)),
-        "pragmatic_speaker": shape_of("pragmatic_speaker", (lex / lex.sum(1, keepdims=True), 1.0), (3, 4)),
-        "pragmatic_listener": fg_listener,
-        "context_log_L0": shape_of("context_log_L0", (scores,), (3, 3)),
-        "literal_speaker": lambda ns: None if int(ns["literal_speaker"](scores, 0)) == 0 else "S0 should pick argmax_u scores[target, u]",
-        "neural_log_S1": shape_of("neural_log_S1", (log_L0,), (3, 3)),
-        "neural_log_L1": shape_of("neural_log_L1", (log_softmax_rows(scores),), (3, 3)),
-        "observation_model": shape_of("observation_model", (3, 2), (4, 3)),
-        "knowledgeable_speaker": shape_of("knowledgeable_speaker", (kn_lex, np.ones(4) / 4, kn_obs, 1.0, kn_cost), (4, 4)),
-        "knowledgeable_listener": shape_of("knowledgeable_listener", (np.full((4, 4), 0.25), np.ones(4) / 4, kn_obs), (4, 4)),
+        "execute": executes,
+        "rsa_L0": shape_of("rsa_L0", (fg_phi,), (4, 3)),
+        "rsa_S1": shape_of("rsa_S1", (np.zeros((4, 3)) - np.log(3),), (3, 4)),
+        "rsa_L1": fg_listener,
+        "parse": lambda ns: None if ns["parse"]("two circles") == {"op": "count", "shape": "circle", "n": 2} else "parse('two circles') should be {'op': 'count', 'shape': 'circle', 'n': 2}",
     }
 
 
