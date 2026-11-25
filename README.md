@@ -15,7 +15,7 @@ conda create -y -n ugrad-nlp python=3.11 jupyterlab && conda activate ugrad-nlp
 pip install -r requirements.txt && jupyter lab
 ```
 
-You only download one CLIP model (about 600 MB) and the CIFAR-10 test split (24 MB).
+Parts 1–3 download one CLIP model (about 600 MB) and the CIFAR-10 test split (24 MB). Optional Part 4 (+10 extra credit) downloads a small vision-language model (about 1 GB) and takes about 10 minutes on a CPU.
 
 ## Submit
 

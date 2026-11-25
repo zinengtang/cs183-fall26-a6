@@ -24,13 +24,13 @@ CELLS = {
     "zero_shot": ["build_zero_shot_weights", "zero_shot_logits"],
     "execute": ["execute"],
     "rsa": ["rsa_L0", "rsa_S1", "rsa_L1"],
-    "parse": ["parse"],
+    "yes_no_margin": ["yes_no_margin"],
 }
 PART = {
     "clip_contrastive_loss": "1.1", "build_zero_shot_weights": "1.2", "zero_shot_logits": "1.2",
-    "execute": "2.2", "rsa_L0": "3.1", "rsa_S1": "3.1", "rsa_L1": "3.1", "parse": "4.1",
+    "execute": "2.2", "rsa_L0": "3.1", "rsa_S1": "3.1", "rsa_L1": "3.1", "yes_no_margin": "4.1",
 }
-ONLY_283A = {"parse"}
+EXTRA_CREDIT = {"yes_no_margin"}   # Part 4 is optional
 
 
 def smoke_tests():
@@ -78,7 +78,7 @@ def smoke_tests():
         "rsa_L0": shape_of("rsa_L0", (fg_phi,), (4, 3)),
         "rsa_S1": shape_of("rsa_S1", (np.zeros((4, 3)) - np.log(3),), (3, 4)),
         "rsa_L1": fg_listener,
-        "parse": lambda ns: None if ns["parse"]("two circles") == {"op": "count", "shape": "circle", "n": 2} else "parse('two circles') should be {'op': 'count', 'shape': 'circle', 'n': 2}",
+        "yes_no_margin": lambda ns: None if abs(float(ns["yes_no_margin"](torch.zeros(10), [1, 2], [3])) - np.log(2)) < 1e-5 else "uniform logits with 2 yes ids and 1 no id should give log 2",
     }
 
 
@@ -125,8 +125,8 @@ def main():
                 hint = " (graded cells must be self-contained)" if isinstance(e, NameError) else ""
                 cell_error = f"the cell itself fails to run: {type(e).__name__}: {e}{hint}"
         for fn in fns:
-            optional = fn in ONLY_283A
-            label = f"{fn}{' (283A)' if optional else ''}"
+            optional = fn in EXTRA_CREDIT
+            label = f"{fn}{' (extra credit)' if optional else ''}"
             if cell_error:
                 status = cell_error
             elif fn not in ns:
@@ -156,9 +156,11 @@ def main():
             z.write(pdf, "HW6.pdf")
 
     print(f"\nwrote {args.out} ({os.path.getsize(args.out) / 1024:.0f} KB, {1 + bool(pdf)} files)")
-    if problems or not pdf:
-        print("\nSome items above still need work. The zip was written anyway, so you can submit "
+    if problems:
+        print("\nSome functions above still need work. The zip was written anyway, so you can submit "
               "partial progress, but those parts will not score.")
+    elif not pdf:
+        print("\nThe code checks out, but HW6.pdf is missing: the written (★) questions are graded from it.")
     else:
         print("\nEverything checks out. Upload submission.zip to Gradescope (A6).")
 
